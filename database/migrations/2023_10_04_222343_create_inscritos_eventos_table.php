@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inscritos_eventos', function (Blueprint $table) {
+         Schema::create('inscritos_eventos', function (Blueprint $table) {
             $table->id();
-            $table->integer('inscrito_id');
-            $table->integer('evento_id');
             $table->foreignId('inscrito_id')->references('id')->on('inscritos');
             $table->foreignId('evento_id')->references('id')->on('eventos');
             $table->timestamps();
