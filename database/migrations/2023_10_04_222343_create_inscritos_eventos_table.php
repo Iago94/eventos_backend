@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('inscrito_id')->references('id')->on('inscritos');
             $table->foreignId('evento_id')->references('id')->on('eventos');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

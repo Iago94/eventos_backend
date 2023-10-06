@@ -17,6 +17,7 @@ return new class extends Migration
             $table->date('data_inicio');
             $table->date('data_fim');
             $table->boolean('status');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
