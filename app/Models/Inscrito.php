@@ -15,4 +15,9 @@ class Inscrito extends Model
         'cpf',
         'email'
     ];
+
+    public function eventos()
+    {
+        return $this->belongsToMany(Evento::class, 'inscritos_eventos', 'inscrito_id', 'evento_id');
+    }
 }

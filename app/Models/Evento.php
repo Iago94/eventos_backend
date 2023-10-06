@@ -11,14 +11,16 @@ class Evento extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'nome'       ,
-        'data_inicio', 
-        'data_fim'   , 
-        'status'     
+        'nome',
+        'data_inicio',
+        'data_fim',
+        'status',
     ];
 
-    Public function eventos(){
-        return $this->belongsToMany('App\Models\Evento', 'inscritos_eventos', 'inscrito_id', 'evento_id');
+    public function inscritos()
+    {
+        return $this->belongsToMany(Inscrito::class, 'inscritos_eventos', 'evento_id', 'inscrito_id')
+            ->where('status', true);
     }
     
 }

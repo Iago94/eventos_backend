@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventoController;
+use App\Http\Controllers\InscritosEventosController;
 use App\Http\Controllers\InscritoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,14 @@ Route::controller(InscritoController::class)->prefix('inscritos')->group(functio
 });
 
 Route::controller(EventoController::class)->prefix('eventos')->group(function () {
+    Route::get('/', 'index');
+    Route::get('/{id}', 'show');
+    Route::post('/', 'store');
+    Route::put('/{id}', 'update');
+    Route::delete('/{id}', 'destroy');
+});
+
+Route::controller(InscritosEventosController::class)->prefix('inscritos-eventos')->group(function () {
     Route::get('/', 'index');
     Route::get('/{id}', 'show');
     Route::post('/', 'store');

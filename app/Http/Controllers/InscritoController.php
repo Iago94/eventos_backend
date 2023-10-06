@@ -24,12 +24,12 @@ class InscritoController extends Controller
             
             $retorno = response()->json([
                 'status' => 1,
-                'id' => $inscrito
+                'id'     => $inscrito
             ]);
 
         }catch(\Exception $e) {
             $retorno = response()->json([
-                'status' => 0,
+                'status'  => 0,
                 'message' => $e->getMessage()
             ]); 
 
@@ -40,13 +40,13 @@ class InscritoController extends Controller
     public function store(Request $request)
     {
         $regras = [
-            'nome' => 'required',
-            'cpf' => 'required',
+            'nome'  => 'required',
+            'cpf'   => 'required',
             'email' => 'required'
         ];
 
         $mensagens = [
-            'required' => 'O campo :attribute é obrigatório',
+            'required'    => 'O campo :attribute é obrigatório',
             'email.email' => 'o campo precisa de um email valido'
         ];
 
@@ -63,12 +63,12 @@ class InscritoController extends Controller
 
             $retorno = response()->json([
                 'status' => 1,
-                'id' => $model->id
+                'id'     => $model->id
             ]);
             
         } catch(\Exception $e) {
             $retorno = response()->json([
-                'status' => 0,
+                'status'  => 0,
                 'message' => $e->getMessage()
             ]);
         }
@@ -80,13 +80,13 @@ class InscritoController extends Controller
     {
         //atualiza o registro
         $regras = [
-            'nome' => 'required',
-            'cpf' => 'required',
+            'nome'  => 'required',
+            'cpf'   => 'required',
             'email' => 'required'
         ];
 
         $mensagens = [
-            'required' => 'O campo :attribute é obrigatório',
+            'required'    => 'O campo :attribute é obrigatório',
             'email.email' => 'o campo precisa de um email valido'
         ];
 
@@ -104,13 +104,13 @@ class InscritoController extends Controller
             $inscrito->update($params);
             
             $retorno = response()->json([
-                'status' => 1,
+                'status'  => 1,
                 'message' => 'Inscrito atualizado com sucesso'
             ]);
 
         }catch(\Exception $e) {
             $retorno = response()->json([
-                'status' => 0,
+                'status'  => 0,
                 'message' => $e->getMessage()
             ]); 
         }
@@ -127,13 +127,13 @@ class InscritoController extends Controller
            $inscrito->delete();
 
            $retorno = response()->json([
-            'status' => 0,
+            'status'  => 0,
             'message' => 'Inscrito excluido com sucesso'
            ]);
 
        }catch(\Exception $e) {
             $retorno = response()->json([
-                'status' => 0,
+                'status'  => 0,
                 'message' => $e->getMessage()
             ]); 
         }

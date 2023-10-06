@@ -12,14 +12,6 @@ class EventoController extends Controller
         //método index vai retornar todos os inscritos cadastrados
         $eventos = Evento::paginate(10);
 
-        if (!$eventos) {
-  
-            return response()->json([
-                'status' => 0,
-                'message' => 'Evento não encontrado'
-            ]);
-        } 
-
         return response()->json($eventos);
     }
 
@@ -31,8 +23,8 @@ class EventoController extends Controller
 
             if (!$eventos) {
   
-                return response()->json([
-                    'status' => 0,
+                $retorno = response()->json([
+                    'status'  => 0,
                     'message' => 'Evento não encontrado'
                 ]);
             } 
@@ -44,7 +36,7 @@ class EventoController extends Controller
 
         }catch(\Exception $e) {
             $retorno = response()->json([
-                'status' => 0,
+                'status'  => 0,
                 'message' => $e->getMessage()
             ]); 
 
@@ -70,24 +62,24 @@ class EventoController extends Controller
         $params = $request->all();
 
         try {
-            $model = Evento::create($params);
+            $eventos = Evento::create($params);
 
             if (!$eventos) {
   
-                return response()->json([
-                    'status' => 0,
+                $retorno = response()->json([
+                    'status'  => 0,
                     'message' => 'Evento não encontrado'
                 ]);
             } 
 
             $retorno = response()->json([
                 'status' => 1,
-                'id' => $model->id
+                'id'     => $eventos->id
             ]);
             
         } catch(\Exception $e) {
             $retorno = response()->json([
-                'status' => 0,
+                'status'  => 0,
                 'message' => $e->getMessage()
             ]);
         }
@@ -118,13 +110,13 @@ class EventoController extends Controller
             $eventos->update($params);
             
             $retorno = response()->json([
-                'status' => 1,
+                'status'  => 1,
                 'message' => 'Inscrito atualizado com sucesso'
             ]);
 
         }catch(\Exception $e) {
                 $retorno = response()->json([
-                    'status' => 0,
+                    'status'  => 0,
                     'message' => $e->getMessage()
                 ]); 
         }
@@ -141,7 +133,7 @@ class EventoController extends Controller
            if (!$eventos) {
   
                 return response()->json([
-                    'status' => 0,
+                    'status'  => 0,
                     'message' => 'Evento não encontrado'
                 ]);
             }   
@@ -149,13 +141,13 @@ class EventoController extends Controller
            $eventos->delete();
 
            $retorno = response()->json([
-            'status' => 0,
+            'status'  => 0,
             'message' => 'Inscrito excluido com sucesso'
            ]);
 
        }catch(\Exception $e) {
         $retorno = response()->json([
-            'status' => 0,
+            'status'  => 0,
             'message' => $e->getMessage()
         ]); 
     }
