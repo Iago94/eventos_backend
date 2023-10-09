@@ -140,4 +140,18 @@ class InscritoController extends Controller
         return $retorno;
     }
 
+    public function getInscrotoByName(){
+
+      
+        $nome = $request->input('nome');
+
+        if ($nome) {
+       
+            $inscritos = Inscrito::where('nome', 'ilike', "%$nome%")->paginate(10);
+
+            return response()->json($inscritos);
+        }
+        
+    }
+
 }
